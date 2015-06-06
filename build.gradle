@@ -1,0 +1,33 @@
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven-publish'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+  // compile 'org.slf4j:slf4j-api:1.7.5'
+  // testCompile "junit:junit:4.11"
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      groupId 'com.github.rexyotta'
+      artifactId 'gradle_vertx_plugin'
+      version '0.1'
+      artifact jar
+    }
+  }
+  repositories {
+    maven {
+      // change to point to your repo, e.g. http://my.org/repo
+      url "$buildDir/repo"
+    }
+  }
+}
